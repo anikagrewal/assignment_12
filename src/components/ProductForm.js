@@ -21,14 +21,12 @@ export default function ProductForm() {
   const [product, setProduct] = useState(initialData);
 
   function handleSubmit(e) {
-    // e.preventDefault();
+     e.preventDefault();
 
     if (editing === "new") {
       addProduct({
         ...product,
         id: nanoid(),
-        time: time,
-        date: date,
       });
     } else {
       updateProduct(product);
@@ -82,7 +80,7 @@ export default function ProductForm() {
           <div>
             <Button variant="contained"
             className="save-btn"
-            onClick={() => handleSubmit()}>
+            onClick={() => {handleSubmit(), formattedTime()}}>
               Save
             </Button>
           </div>
