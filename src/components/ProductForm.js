@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { InventoryContext } from "../data/InventoryContext";
 import { nanoid } from "nanoid";
-import { Button, TextField } from "@mui/material"
+import { TextField } from "@mui/material"
 
 export default function ProductForm() {
   const { addProduct, setEditing, updateProduct, editing, products } =
@@ -10,7 +10,6 @@ export default function ProductForm() {
   let initialData = {
     name: "",
     inStock: false,
-    time: "",
   };
 
   if (editing !== "new") {
@@ -78,18 +77,14 @@ export default function ProductForm() {
         </div>
         <div className="form-btns">
           <div>
-            <Button variant="contained"
-            className="save-btn"
-            onClick={() => {handleSubmit(), formattedTime()}}>
+          <button className="save-btn" onClick={formattedTime}>
               Save
-            </Button>
+            </button>
           </div>
           <div>
-            <Button variant="contained"
-            className="cancel-btn"
-            onClick={() => setEditing(null)}>
+            <button className="cancel-btn" onClick={() => setEditing(null)}>
               Cancel
-            </Button>
+            </button>
           </div>
         </div>
       </form>
