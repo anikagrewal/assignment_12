@@ -5,6 +5,7 @@ import ProductForm from "./components/ProductForm";
 import ProductList from "./components/ProductList";
 import { InventoryContext } from "./data/InventoryContext";
 import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
 
 export default function App() {
   const [products, setProducts] = useState(initialProducts);
@@ -47,7 +48,9 @@ export default function App() {
           editing,
         }}
       >
-        <h2>Task Managment App</h2>
+           <Toolbar sx={{ backgroundColor: "lightblue" }}>
+          <h2 style={{ color: "black" }}>Task Management App</h2>
+        </Toolbar>
         {!editing ? (
           <>
             <ProductList />

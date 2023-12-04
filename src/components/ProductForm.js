@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { InventoryContext } from "../data/InventoryContext";
 import { nanoid } from "nanoid";
+import { Button, TextField } from "@mui/material"
 
 export default function ProductForm() {
   const { addProduct, setEditing, updateProduct, editing, products } =
@@ -9,6 +10,7 @@ export default function ProductForm() {
   let initialData = {
     name: "",
     inStock: false,
+    time: "",
   };
 
   if (editing !== "new") {
@@ -19,12 +21,14 @@ export default function ProductForm() {
   const [product, setProduct] = useState(initialData);
 
   function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (editing === "new") {
       addProduct({
         ...product,
         id: nanoid(),
+        time: time,
+        date: date,
       });
     } else {
       updateProduct(product);
@@ -66,8 +70,9 @@ export default function ProductForm() {
         <div className="adding-task">
           <label>Task:</label>
           <div className="input-box">
-            <input
-              type="text"
+            <TextField
+            fullWidth
+            id="fullWidth"
               value={product.name}
               onChange={(e) => handleInput(e, "name")}
             />
@@ -75,14 +80,18 @@ export default function ProductForm() {
         </div>
         <div className="form-btns">
           <div>
-            <button className="save-btn" onClick={formattedTime}>
+            <Button variant="contained"
+            className="save-btn"
+            onClick={() => handleSubmit()}>
               Save
-            </button>
+            </Button>
           </div>
           <div>
-            <button className="cancel-btn" onClick={() => setEditing(null)}>
+            <Button variant="contained"
+            className="cancel-btn"
+            onClick={() => setEditing(null)}>
               Cancel
-            </button>
+            </Button>
           </div>
         </div>
       </form>
